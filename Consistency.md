@@ -37,6 +37,9 @@ According to the **CAP Theorem**, a distributed system can guarantee **only two*
 
 - **Partition Tolerance (P)**  
   The system continues to operate despite **network failures or message loss** between nodes.
+  
+![1_rxTP-_STj-QRDt1X9fdVlA](https://github.com/user-attachments/assets/fb2649dc-ec88-4b25-a6f3-184826c4b0e6)
+
 
 ---
 
