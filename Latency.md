@@ -12,6 +12,11 @@ Latency is the time taken for a request to travel from client to server and back
 
 **Amazon's Discovery:** Every 100ms of latency costs 1% in sales.
 
+![Latency](https://github.com/user-attachments/assets/96a5142e-5bf7-4378-aeef-b80a725f04f7)
+
+
+---
+
 **Interview Question:** *"How would you reduce latency in this system?"*
 
 ---
