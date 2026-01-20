@@ -136,5 +136,32 @@ Deploying systems across multiple geographic regions.
 
 **Interview Question:** *"What's your system's availability target and how will you achieve it?"*
 
-For a Senior Engineer role, a safe and professional target to propose is "Three Nines" (99.9%) for standard services or "Four Nines" (99.99%) for mission-critical ones.
+I target 99.99% availability for core services. I achieve this by ensuring no single point of failure exists in our infrastructure through Multi-AZ redundancy, using Resilience4j to prevent cascading failures in our microservices, and utilizing automated canary rollbacks to minimize the impact of bad code. Our goal is to keep our Mean Time To Recovery (MTTR) under 5 minutes through proactive alerting and automated self-healing."
+
+**How to Achieve It (The "Three Pillars" Strategy)**
+To hit 99.99%, you must move from "reactive" fixing to "proactive" prevention across three domains:
+
+## I. Infrastructure: Eliminate Single Points of Failure (SPOF)
+**Multi-AZ Deployment:** Never run in a single data center. Use at least 3 Availability Zones (AZs). If an entire AZ goes dark due to a power failure, your Load Balancer (ALB) automatically shifts traffic to the healthy zones.
+
+**Database High Availability:** Use a "Multi-AZ" database setup with a synchronous standby. If the primary database fails, the system triggers an automatic failover to the standby in seconds.
+
+**Stateless Services:** Ensure your application servers hold no "session memory." If a server dies, a new one can take its place immediately without the user losing their progress.
+
+## II. Application: Resilience Patterns
+**Circuit Breakers (e.g., Resilience4j):** If a third-party service (like a shipping API) is slow, don't let it "hang" your system. The circuit breaker "trips," giving your user a cached or "limited" response instead of a spinning wheel.
+
+**Retries with Exponential Backoff:** If a request fails, don't hammer the server again instantly. Wait 100ms, then 200ms, then 400ms. This prevents a "thundering herd" effect that could crash a recovering system.
+
+**Health Checks:** Implement deep health checks. If a service can't talk to its database, it should report itself as "Unhealthy" so the orchestrator (like Kubernetes) can kill and restart it.
+
+## III. Operations: Reducing MTTR (Mean Time To Recovery)
+Availability isn't just about not breaking; it's about fixing things fast.
+
+**Automated Monitoring & Alerting:** Use tools like Prometheus/Grafana or Datadog. You should have an automated alert for "high error rates" that pages an engineer before the total downtime begins.
+
+**Canary Deployments:** Use Blue-Green or Canary deployments. If a new code change causes a spike in 5xx errors, the system should automatically roll back to the previous stable version in seconds.
+
+**Chaos Engineering:** Occasionally "kill" a server in production on purpose (like Netflix's Chaos Monkey) to prove your system can actually handle a real failure without human intervention.
+
 
