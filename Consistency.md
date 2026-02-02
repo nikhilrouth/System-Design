@@ -130,8 +130,8 @@ In this case:
 > **There is no universally “correct” choice.  
 > The right answer depends on business impact.**
 
-- **Wrong data → choose Consistency** (if you don't want wrong data)
-- **Downtime → choose Availability** (if you don't want downtime)
+- **if you don't want wrong data → choose Consistency** 
+- **if you don't want downtime → choose Availability** 
 
 Strong candidates don’t just name CP or AP — they **justify the trade-off**.
 
