@@ -22,7 +22,7 @@ To reduce costs by 50% without sacrificing performance, you have to move from a 
 
 **Spot Instances:** For batch processes, logs, and background processing, using less expensive instances such as AWS Spot instances can save up to 90% of the cost compared to on-demand instances.
 
-**Virtical Scaling (Gridlock Princple):** Use auto scaling; for example, the JVM needs 3GB for a 6GB pod that shrinks to 3GB, saving pods money.
+**Virtical Scaling (Gridlock Princple):** Use auto scaling; for example, the JVM using 3GB for a 6GB pod then it shrinks to 3GB, saving pods money.
 
 ### 2. Move to Serverless & Manged Services
 
